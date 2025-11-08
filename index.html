@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulir Pendaftaran - PAGARNUSA UNUSIA</title>
+  <title>Formulir Pendaftaran Anggota</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif}
-    body{background:linear-gradient(135deg,#d7f5e9,#f8fafc);color:#1e293b;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;animation:fadeIn 1s ease}
-    header,footer{background:#1B7548;color:#fff;text-align:center;padding:14px 0;box-shadow:0 2px 8px rgba(0,0,0,0.15);animation:slideDown .8s ease}
-    header img{height:60px;margin-bottom:6px;animation:float 3s infinite ease-in-out}
-    main{max-width:700px;width:90%;margin:30px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);animation:zoomIn .6s ease}
+    body{background:linear-gradient(135deg,#d7f5e9,#f8fafc);color:#1e293b;min-height:100vh;display:flex;flex-direction:column;animation:fadeIn 1s ease}
+    header,footer{background:#1B7548;color:#fff;text-align:center;padding:16px 0;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+    header img{height:60px;margin-bottom:8px;animation:float 3s infinite ease-in-out}
+    main{max-width:700px;width:90%;margin:30px auto;background:#fff;padding:28px;border-radius:14px;box-shadow:0 4px 14px rgba(0,0,0,0.08);animation:zoomIn .6s ease}
     h1{text-align:center;color:#1B7548;margin-bottom:10px;font-weight:700}
     p.desc{text-align:center;margin-bottom:20px;color:#64748b}
-    form label{display:block;margin-top:10px;margin-bottom:4px;font-weight:600;font-size:14px}
+    label{display:block;margin-top:10px;margin-bottom:4px;font-weight:600;font-size:14px}
     input,select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;transition:all .3s}
     input:focus,select:focus{border-color:#1B7548;box-shadow:0 0 6px #1B754855;outline:none}
     button{margin-top:20px;width:100%;padding:12px;background:#1B7548;color:#fff;border:0;border-radius:8px;font-weight:600;font-size:15px;cursor:pointer;transition:all .3s}
@@ -20,12 +21,41 @@
     footer p{font-size:13px}
     .field-group{display:flex;gap:10px;flex-wrap:wrap}
     .field-group>div{flex:1;min-width:45%}
-
+    .popup {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 24px;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .3s ease;
+      z-index: 1000;
+    }
+    .popup.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .popup h3 {color:#1B7548;margin-bottom:8px}
+    .popup p {color:#475569;font-size:14px}
+    .popup button {
+      margin-top:16px;
+      background:#1B7548;
+      color:#fff;
+      border:none;
+      border-radius:6px;
+      padding:8px 16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .popup button:hover {background:#145c38;}
     @keyframes fadeIn {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes slideDown {from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes zoomIn {from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
     @keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
     @media(max-width:600px){
       main{padding:20px}
       h1{font-size:20px}
@@ -41,34 +71,35 @@
 
   <main>
     <h1>Formulir Pendaftaran Anggota</h1>
-    <p class="desc">Silakan isi data diri Anda dengan lengkap.</p>
+    <p class="desc">Silakan isi data diri Anda dengan lengkap dan benar.</p>
 
-    <form id="daftarForm">
+    <!-- GANTI action dengan URL Web App kamu -->
+    <form id="formData" action="https://script.google.com/macros/s/AKfycbzip_2fv8MPwU7Sc0pW4FnK5y71bPpIJCLnNNWRUGCZmgiWb24pyyqU58hapb7dXh9_yg/exec" method="POST">
       <label for="nama">Nama Lengkap *</label>
       <input type="text" id="nama" name="nama" required>
 
       <label for="email">Email *</label>
       <input type="email" id="email" name="email" required>
 
-      <label for="whatsapp">No. WhatsApp *</label>
-      <input type="tel" id="whatsapp" name="whatsapp" required>
+      <label for="no_wa">No. WhatsApp *</label>
+      <input type="tel" id="no_wa" name="no_wa" placeholder="08xxxxxxxxxx" required>
 
-      <label for="nim">NIM / NIS *</label>
+      <label for="nim">NIM *</label>
       <input type="text" id="nim" name="nim" required>
 
       <div class="field-group">
         <div>
-          <label for="tempat">Tempat Lahir *</label>
-          <input type="text" id="tempat" name="tempat" required>
+          <label for="tempat_lahir">Tempat Lahir *</label>
+          <input type="text" id="tempat_lahir" name="tempat_lahir" required>
         </div>
         <div>
-          <label for="tanggal">Tanggal Lahir *</label>
-          <input type="date" id="tanggal" name="tanggal" required>
+          <label for="tgl_lahir">Tanggal Lahir *</label>
+          <input type="date" id="tgl_lahir" name="tgl_lahir" required>
         </div>
       </div>
 
-      <label for="jk">Jenis Kelamin *</label>
-      <select id="jk" name="jk" required>
+      <label for="jenis_kelamin">Jenis Kelamin *</label>
+      <select id="jenis_kelamin" name="jenis_kelamin" required>
         <option value="">-- Pilih --</option>
         <option value="Laki-Laki">Laki-Laki</option>
         <option value="Perempuan">Perempuan</option>
@@ -82,45 +113,31 @@
     <p>© 2025 PAGARNUSA UNUSIA. Semua hak cipta dilindungi.</p>
   </footer>
 
+  <div id="popup" class="popup">
+    <h3>✅ Data Berhasil Dikirim</h3>
+    <p>Terima kasih, data Anda sudah tersimpan di sistem.</p>
+    <button onclick="closePopup()">Tutup</button>
+  </div>
+
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxiSJXyCJKaZqmXxJOfHj8mnC6goRvu-yCQ9PWhfaDOZJ_O-x7QN2U8X0QYjl9KDDD5bg/exec'; 
-    const form = document.getElementById('daftarForm');
+    const form = document.getElementById('formData');
+    const popup = document.getElementById('popup');
 
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
+      const data = new FormData(form);
 
-      const data = {
-        nama: nama.value.trim(),
-        email: email.value.trim(),
-        wa: whatsapp.value.trim(),
-        nim: nim.value.trim(),
-        tempat: tempat.value.trim(),
-        tanggal: tanggal.value,
-        jk: jk.value
-      };
-
-      if (Object.values(data).some(v => !v)) {
-        alert('⚠️ Mohon isi semua data dengan benar.');
-        return;
-      }
-
-      try {
-        const res = await fetch(scriptURL, {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json' }
-        });
-
-        if (!res.ok) throw new Error('Gagal kirim');
-        alert('✅ Pendaftaran berhasil! Data Anda telah dikirim.');
-        form.reset();
-      } catch (err) {
-        console.error(err);
-        alert('❌ Gagal mengirim data. Periksa koneksi atau URL Script.');
-      }
+      fetch(form.action, { method: 'POST', body: data })
+        .then(() => {
+          form.reset();
+          popup.classList.add('active');
+        })
+        .catch(() => alert('❌ Gagal mengirim data. Periksa koneksi Anda.'));
     });
+
+    function closePopup() {
+      popup.classList.remove('active');
+    }
   </script>
 </body>
 </html>
-
-
